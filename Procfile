@@ -1,0 +1,1 @@
+web: java -jar target/notes-app-1.0.0.jar --server.port=$PORT
