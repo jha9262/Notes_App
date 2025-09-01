@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Maven target
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+build/
+dist/
+
+# Logs
+*.log
