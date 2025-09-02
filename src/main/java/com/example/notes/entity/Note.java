@@ -1,47 +1,40 @@
-package com.example.notes;
+package com.example.notes.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-// This is our main Note class - basically represents a single note in the database
-// I'm using JPA annotations here because they make database stuff way easier
 @Entity
 @Table(name = "notes")
 public class Note {
-    // Auto-generated ID - Spring will handle this for us
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     
-    // Title is required - can't be null
     @Column(nullable = false)
     private String title;
     
-    // Using TEXT type for longer content - learned this from Stack Overflow
     @Column(columnDefinition = "TEXT")
     private String content;
     
-    // Timestamps - these will track when notes are created/modified
     @Column(name = "created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
     
     @Column(name = "updated_at")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime updatedAt;
     
-    // This runs automatically when we save a new note
     @PrePersist
     protected void onCreate() {
         createdAt = updatedAt = LocalDateTime.now();
     }
     
-    // This runs automatically when we update an existing note
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
     
-    // Standard getters and setters - IDE generated these for me
-    // Probably could use Lombok to make this cleaner but keeping it simple for now
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
     

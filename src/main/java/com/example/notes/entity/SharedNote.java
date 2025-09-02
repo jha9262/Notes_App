@@ -1,4 +1,4 @@
-package com.example.notes;
+package com.example.notes.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -27,7 +27,6 @@ public class SharedNote {
         createdAt = LocalDateTime.now();
     }
     
-    // Getters and Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
     
